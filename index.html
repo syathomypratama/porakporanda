@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Porak Poranda | Pre-listen EP</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background-color: #0a0a0a;
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
+          url("assets/images/background.jpeg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #d4d4d4;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        min-height: 100vh;
+      }
+
+      .main-container {
+        max-width: 900px;
+        margin: 20px auto;
+        background: rgba(16, 16, 16, 0.95);
+        backdrop-filter: blur(5px);
+        min-height: calc(100vh - 40px);
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+        border: 1px solid #262626;
+      }
+
+      /* --- HERO AREA --- */
+      .hero {
+        padding: 40px 32px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        border-bottom: 1px solid #262626;
+      }
+      @media (min-width: 640px) {
+        .hero {
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: space-between;
+        }
+      }
+
+      .hero-info-wrap {
+        text-align: center;
+      }
+      @media (min-width: 640px) {
+        .hero-info-wrap {
+          text-align: left;
+          max-width: 50%;
+        }
+      }
+
+      .hero-cover {
+        width: 100%;
+        max-width: 350px;
+        height: 400px;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+        flex-shrink: 0;
+        border: 1px solid #333;
+      }
+      @media (min-width: 640px) {
+        .hero-cover {
+          width: 550px;
+        }
+      }
+
+      .hero-label {
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: #a3a3a3;
+        margin-bottom: 2px;
+      }
+      .hero h1 {
+        font-weight: 700;
+        font-size: 2.2rem;
+        letter-spacing: -0.5px;
+        margin: 0 0 8px;
+        color: #fff;
+        line-height: 1.1;
+      }
+      .hero-artist {
+        font-size: 1.1rem;
+        color: #e11d48;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+      .hero-meta {
+        font-size: 0.85rem;
+        color: #737373;
+        margin-bottom: 20px;
+      }
+
+      .buy-action {
+        text-align: center;
+      }
+      @media (min-width: 640px) {
+        .buy-action {
+          text-align: left;
+        }
+      }
+      .btn-buy-album {
+        display: inline-block;
+        background: #222;
+        color: #fff;
+        border: 1px solid #444;
+        padding: 10px 20px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 8px;
+      }
+      .btn-buy-album:hover {
+        background: #e11d48;
+        border-color: #e11d48;
+      }
+      .price-text {
+        font-size: 0.8rem;
+        color: #a3a3a3;
+      }
+
+      /* --- TRACK LIST --- */
+      .track-list {
+        padding: 20px 32px 50px;
+      }
+
+      .track-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 0;
+        border-bottom: 1px solid #1a1a1a;
+        cursor: pointer;
+        transition: background 0.1s;
+      }
+      .track-row:hover {
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .track-row.active-track {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .track-play-btn {
+        width: 26px;
+        height: 26px;
+        background: #262626;
+        border: 1px solid #444;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .track-play-btn svg {
+        width: 14px;
+        height: 14px;
+        fill: #a3a3a3;
+      }
+      .track-row:hover .track-play-btn {
+        border-color: #737373;
+      }
+      .track-row:hover .track-play-btn svg {
+        fill: #fff;
+      }
+
+      .track-text {
+        min-width: 0;
+        flex-grow: 1;
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+
+      .track-number {
+        font-size: 0.85rem;
+        color: #737373;
+        width: 20px;
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      .track-title {
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .badge-demo {
+        font-size: 0.6rem;
+        color: #f59e0b;
+        padding: 0 4px;
+        border: 1px solid #f59e0b;
+        border-radius: 2px;
+        margin-left: 4px;
+        text-transform: uppercase;
+      }
+
+      .track-duration {
+        font-size: 0.8rem;
+        color: #737373;
+        flex-shrink: 0;
+      }
+
+      /* --- ACTION TRACK: LIKE & PLAY COUNT --- */
+      .track-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 0;
+      }
+
+      .play-count-badge {
+        font-size: 0.75rem;
+        color: #737373;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .play-count-badge svg {
+        width: 13px;
+        height: 13px;
+        fill: #737373;
+      }
+
+      .btn-like {
+        background: none;
+        border: none;
+        color: #525252;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.75rem;
+        padding: 2px;
+        transition: all 0.2s;
+      }
+      .btn-like:hover,
+      .btn-like.liked {
+        color: #e11d48;
+      }
+      .btn-like.liked svg {
+        fill: #e11d48;
+        stroke: #e11d48;
+      }
+      .btn-like svg {
+        width: 14px;
+        height: 14px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+      }
+
+      /* --- MODAL PLAYER & KETERANGAN --- */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 100;
+      }
+      .overlay.active {
+        display: flex;
+      }
+
+      .modal {
+        background: #111;
+        border: 1px solid #333;
+        max-width: 580px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .modal-close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid #444;
+        color: #fff;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+
+      /* CONTAINER COVER DENGAN SPIRAL & ZOOM ANIMATION */
+      .modal-cover-wrap {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 320px;
+        max-height: 480px;
+        background: #050505;
+        border-bottom: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      /* Efek Spiral Gradasi Merah Berputar */
+      .modal-cover-wrap::before {
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        background: repeating-conic-gradient(
+          from 0deg,
+          #e11d48 0deg 15deg,
+          #881337 15deg 30deg,
+          #450a0a 30deg 45deg,
+          #000000 45deg 60deg
+        );
+        opacity: 0.35;
+        animation: spinSpiral 12s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes spinSpiral {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Gambar Cover Modal dengan Animasi Zoom In Zoom Out */
+      .modal-cover {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: auto;
+        max-height: 480px;
+        object-fit: contain;
+        display: block;
+        animation: coverZoom 6s ease-in-out infinite alternate;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+      }
+
+      @keyframes coverZoom {
+        0% {
+          transform: scale(0.88);
+        }
+        100% {
+          transform: scale(1.08);
+        }
+      }
+
+      .modal-body {
+        padding: 20px;
+        background: #111;
+        position: relative;
+        z-index: 3;
+      }
+
+      .modal-info-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+      }
+
+      .modal-title-wrap {
+        min-width: 0;
+        flex-grow: 1;
+      }
+
+      .modal-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 0 0 2px;
+        color: #fff;
+      }
+      .modal-artist {
+        color: #a3a3a3;
+        font-size: 0.85rem;
+        margin: 0;
+      }
+
+      .modal-player {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #1a1a1a;
+        padding: 10px;
+        border: 1px solid #333;
+        margin-bottom: 15px;
+      }
+      .modal-play-btn {
+        width: 36px;
+        height: 36px;
+        background: #e11d48;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .modal-play-btn svg {
+        width: 16px;
+        height: 16px;
+        fill: #fff;
+      }
+      .modal-play-btn.disabled {
+        background: #333 !important;
+        border: 1px solid #444;
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      .modal-progress-area {
+        flex-grow: 1;
+        min-width: 0;
+      }
+      .modal-progress {
+        height: 4px;
+        background: #404040;
+        position: relative;
+        cursor: pointer;
+      }
+      .modal-progress-fill {
+        height: 100%;
+        background: #e11d48;
+        width: 0%;
+      }
+      .modal-times {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.7rem;
+        color: #a3a3a3;
+        margin-top: 5px;
+        font-family: monospace;
+      }
+
+      /* --- BOX REGISTRASI & NOTIFIKASI --- */
+      .alert-box {
+        display: none;
+        padding: 14px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+      .alert-box.active {
+        display: block;
+      }
+
+      .register-box {
+        background: #18181b;
+        border: 1px solid #e11d48;
+      }
+      .register-title {
+        color: #fff;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      .register-desc {
+        color: #a1a1aa;
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+      }
+      .form-group {
+        margin-bottom: 8px;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        background: #09090b;
+        border: 1px solid #3f3f46;
+        color: #fff;
+        border-radius: 3px;
+      }
+      .btn-submit-reg {
+        width: 100%;
+        padding: 8px;
+        background: #e11d48;
+        color: #fff;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+
+      .locked-box {
+        background: #18181b;
+        border: 1px solid #e11d48;
+        color: #d4d4d4;
+        text-align: center;
+      }
+      .locked-title {
+        color: #e11d48;
+        font-weight: bold;
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+      }
+
+      /* DETAIL LAGU */
+      .modal-details {
+        border-top: 1px dashed #262626;
+        padding-top: 12px;
+        font-size: 0.85rem;
+      }
+      .modal-detail-item {
+        margin-bottom: 8px;
+        color: #a3a3a3;
+      }
+      .modal-detail-item strong {
+        color: #d4d4d4;
+      }
+      .modal-desc-box {
+        background: #161616;
+        padding: 10px;
+        border: 1px solid #222;
+        border-radius: 4px;
+        color: #888;
+        font-size: 0.8rem;
+        max-height: 100px;
+        overflow-y: auto;
+        white-space: pre-line;
+        margin-top: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- HERO SECTION -->
+      <div class="hero">
+        <img
+          id="heroCover"
+          src="assets/images/cover.jpeg"
+          alt="Porak Poranda Cover"
+          class="hero-cover"
+        />
+        <div class="hero-info-wrap">
+          <div class="hero-artist">PORAK PORANDA</div>
+          <div class="buy-action">
+            <button class="btn-buy-album">RAW Extended Play</button>
+            <div class="price-text">All Tracks by : Porak Poranda</div>
+            <div class="price-text">Artwork by : JNKL</div>
+            <div class="price-text">
+              Recorded at : Krisna John, Heri Setiaji
+            </div>
+            <div class="price-text">
+              Mixed and Mastered by : Heri Setiaji (Tinggo)
+            </div>
+            <div class="price-text">
+              Special Thanks : Tn. Robertus, Krisna John, JNKL
+            </div>
+          </div>
+          <div class="hero-meta" id="heroMeta">
+            Releases Coming Soon<br />
+            Includes 0 tracks
+          </div>
+        </div>
+      </div>
+
+      <!-- TRACK LIST CONTAINER -->
+      <div class="track-list" id="trackListContainer">
+        <!-- Dynamic rows rendered via JavaScript -->
+      </div>
+    </div>
+
+    <!-- MODAL PLAYER -->
+    <div class="overlay" id="overlay">
+      <div class="modal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div class="modal-cover-wrap">
+          <img class="modal-cover" id="modalCover" src="" alt="Cover Audio" />
+        </div>
+        <div class="modal-body">
+          <div class="modal-info-header">
+            <div class="modal-title-wrap">
+              <h2 class="modal-title" id="modalTitle"></h2>
+              <p class="modal-artist" id="modalArtist"></p>
+            </div>
+            <button class="btn-like" id="modalLikeBtn">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                />
+              </svg>
+              <span class="like-count" id="modalLikeCount">0</span>
+            </button>
+          </div>
+
+          <!-- BOX 1: FORM REGISTRASI -->
+          <div class="alert-box register-box" id="registerBox">
+            <div class="register-title">Batas 2x Pemutaran Selesai!</div>
+            <div class="register-desc">Terimakasih Sudah Mendengarkan 🤘</div>
+            <!-- <form id="regForm" onsubmit="handleRegistration(event)">
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="regName"
+                  placeholder="Nama Lengkap"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  id="regEmail"
+                  placeholder="Alamat Email"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn-submit-reg">Kirim Data</button>
+            </form> -->
+          </div>
+
+          <!-- BOX 2: NOTIFIKASI SUDAH ISI FORM -->
+          <div class="alert-box locked-box" id="lockedBox">
+            <div class="locked-title">Batas Pemutaran Telah Habis</div>
+            <div>
+              Terima kasih! Email Anda sudah terdaftar. Kami akan memberikan
+              notifikasi langsung ke email Anda begitu
+              <strong>Rilis Full / Album</strong> resmi diluncurkan!
+            </div>
+          </div>
+
+          <!-- PLAYER UTAMA -->
+          <div class="modal-player" id="modalPlayerArea">
+            <button class="modal-play-btn" id="modalPlayBtn">
+              <svg id="modalPlayIcon" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+            <div class="modal-progress-area">
+              <div class="modal-progress" id="modalProgress">
+                <div class="modal-progress-fill" id="modalProgressFill"></div>
+              </div>
+              <div class="modal-times">
+                <span id="modalCurTime">0:00</span>
+                <span id="modalDurTime">0:00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DETAIL LAGU -->
+          <div class="modal-details">
+            <div class="modal-detail-item">
+              <strong>Total Didengar:</strong>
+              <span id="modalPlaysCount">0</span> kali
+            </div>
+            <div class="modal-detail-item">
+              <strong>Rilis:</strong> <span id="modalReleaseDate">-</span>
+            </div>
+            <div class="modal-detail-item">
+              <strong>Status:</strong> <span id="modalDemoStatus">-</span>
+            </div>
+            <div class="modal-detail-item">
+              <strong>Keterangan / Lirik:</strong>
+              <div class="modal-desc-box" id="modalDescription"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <audio id="player"></audio>
+
+    <script>
+      /* ==========================================================================
+           1. DATA LAGU MANUAL (Edit / Tambah lagu di array di bawah ini)
+           ========================================================================== */
+      const songsData = [
+        {
+          id: 1,
+          title: "Nggak Sama",
+          artist: "PORAK PORANDA",
+          cover: "assets/images/cover.jpeg",
+          audio: "assets/audio/PORAKPORANDA-TRACK 4-MASTERED.wav",
+          description: "by Porak Poranda",
+          isDemo: false,
+          defaultPlays: 35,
+          defaultLikes: 24,
+        },
+        {
+          id: 2,
+          title: "Birokrasi Hari ini",
+          artist: "PORAK PORANDA",
+          cover: "assets/images/cover.jpeg",
+          audio: "assets/audio/PORAKPORANDA-TRACK 2-MASTERED.wav",
+          description: "by Porak Poranda",
+          isDemo: false,
+          defaultPlays: 49,
+          defaultLikes: 34,
+        },
+        {
+          id: 3,
+          title: "Berlagak Rockstar",
+          artist: "PORAK PORANDA",
+          cover: "assets/images/cover.jpeg",
+          audio: "assets/audio/PORAKPORANDA-TRACK 1-MASTERED.wav",
+          description: "by Porak Poranda",
+          isDemo: false,
+          defaultPlays: 70,
+          defaultLikes: 55,
+        },
+        {
+          id: 4,
+          title: "Muak",
+          artist: "PORAK PORANDA",
+          cover: "assets/images/cover.jpeg",
+          audio: "assets/audio/PORAKPORANDA-TRACK 3-MASTERED.wav",
+          description: "by Porak Poranda",
+          isDemo: false,
+          defaultPlays: 56,
+          defaultLikes: 40,
+        },
+      ];
+
+      /* ==========================================================================
+           2. DOM ELEMENTS & INITIALIZATION
+           ========================================================================== */
+      const player = document.getElementById("player");
+      const overlay = document.getElementById("overlay");
+      const modalCover = document.getElementById("modalCover");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalArtist = document.getElementById("modalArtist");
+      const modalPlayBtn = document.getElementById("modalPlayBtn");
+      const modalPlayIcon = document.getElementById("modalPlayIcon");
+      const modalProgress = document.getElementById("modalProgress");
+      const modalProgressFill = document.getElementById("modalProgressFill");
+      const modalCurTime = document.getElementById("modalCurTime");
+      const modalDurTime = document.getElementById("modalDurTime");
+      const modalReleaseDate = document.getElementById("modalReleaseDate");
+      const modalDemoStatus = document.getElementById("modalDemoStatus");
+      const modalDescription = document.getElementById("modalDescription");
+      const modalPlaysCount = document.getElementById("modalPlaysCount");
+      const modalLikeBtn = document.getElementById("modalLikeBtn");
+      const modalLikeCount = document.getElementById("modalLikeCount");
+      const registerBox = document.getElementById("registerBox");
+      const lockedBox = document.getElementById("lockedBox");
+      const trackListContainer = document.getElementById("trackListContainer");
+      const heroCover = document.getElementById("heroCover");
+      const heroMeta = document.getElementById("heroMeta");
+
+      const playIconPath = '<path d="M8 5v14l11-7z"/>';
+      const pauseIconPath = '<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>';
+      let currentActiveSongId = null;
+
+      // Render Lagu ke HTML
+      function renderTracklist() {
+        if (songsData.length === 0) {
+          trackListContainer.innerHTML =
+            '<div style="text-align:center; padding: 20px; color: #737373;">Belum ada lagu.</div>';
+          return;
+        }
+
+        // Update Header Meta & Cover
+        heroCover.src = songsData[0].cover;
+        heroMeta.innerHTML = `Releases ${songsData[0].releaseDate}<br>Includes ${songsData.length} tracks`;
+
+        trackListContainer.innerHTML = "";
+        songsData.forEach((song, index) => {
+          const isLiked =
+            localStorage.getItem(`song_liked_${song.id}`) === "true";
+          const likesCount = getLikesCount(song);
+          const playsCount = getPlaysCountFromStorage(song);
+
+          const row = document.createElement("div");
+          row.className = "track-row";
+          row.dataset.id = song.id;
+
+          row.innerHTML = `
+                    <div class="track-play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+
+                    <div class="track-text">
+                        <span class="track-number">${index + 1}.</span>
+                        <div class="track-title">
+                            ${song.title}
+                            ${song.isDemo ? '<span class="badge-demo">Demo</span>' : ""}
+                        </div>
+                    </div>
+
+                    <div class="track-actions">
+                        <div class="play-count-badge" title="Jumlah Didengar">
+                            <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                            <span class="plays-count-text">${playsCount}</span>
+                        </div>
+
+                        <button class="btn-like ${isLiked ? "liked" : ""}" onclick="toggleLike(event, ${song.id})">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                            <span class="like-count">${likesCount}</span>
+                        </button>
+                        
+                        <div class="track-duration" id="duration-song-${song.id}">--:--</div>
+                    </div>
+                `;
+
+          row.addEventListener("click", (e) => {
+            if (e.target.closest(".btn-like")) return;
+            openModal(song.id);
+          });
+
+          trackListContainer.appendChild(row);
+
+          // Ambil Durasi Audio Secara Otomatis
+          const probe = new Audio();
+          probe.preload = "metadata";
+          probe.src = song.audio;
+          probe.addEventListener("loadedmetadata", () => {
+            const durEl = document.getElementById(`duration-song-${song.id}`);
+            if (durEl) durEl.textContent = formatTime(probe.duration);
+          });
+        });
+      }
+
+      /* ==========================================================================
+           3. STORAGE & LIMIT LOGIC (Client-Side Storage)
+           ========================================================================== */
+      function getPlayCount(songId) {
+        return parseInt(
+          localStorage.getItem(`song_play_count_${songId}`) || "0",
+        );
+      }
+
+      function getPlaysCountFromStorage(song) {
+        const addedPlays = parseInt(
+          localStorage.getItem(`song_play_count_${song.id}`) || "0",
+        );
+        return song.defaultPlays + addedPlays;
+      }
+
+      function getLikesCount(song) {
+        const isLiked =
+          localStorage.getItem(`song_liked_${song.id}`) === "true";
+        return song.defaultLikes + (isLiked ? 1 : 0);
+      }
+
+      function isUserFormSubmitted(songId) {
+        return localStorage.getItem(`form_submitted_song_${songId}`) === "true";
+      }
+
+      function checkPlayLimitAndPlay() {
+        registerBox.classList.remove("active");
+        lockedBox.classList.remove("active");
+        modalPlayBtn.classList.remove("disabled");
+
+        const count = getPlayCount(currentActiveSongId);
+        const formSubmitted = isUserFormSubmitted(currentActiveSongId);
+
+        if (formSubmitted) {
+          player.pause();
+          lockedBox.classList.add("active");
+          modalPlayBtn.classList.add("disabled");
+          return;
+        }
+
+        if (count >= 2) {
+          player.pause();
+          registerBox.classList.add("active");
+          modalPlayBtn.classList.add("disabled");
+          return;
+        }
+
+        player.play();
+      }
+
+      player.addEventListener("play", () => {
+        if (!currentActiveSongId) return;
+
+        let count = getPlayCount(currentActiveSongId);
+        if (count < 2) {
+          count += 1;
+          localStorage.setItem(
+            `song_play_count_${currentActiveSongId}`,
+            count.toString(),
+          );
+          updatePlayCountUI(currentActiveSongId);
+        }
+      });
+
+      function updatePlayCountUI(songId) {
+        const song = songsData.find((s) => s.id === songId);
+        if (!song) return;
+        const totalPlays = getPlaysCountFromStorage(song);
+
+        const row = document.querySelector(`.track-row[data-id="${songId}"]`);
+        if (row) {
+          row.querySelector(".plays-count-text").textContent = totalPlays;
+        }
+        if (currentActiveSongId === songId) {
+          modalPlaysCount.textContent = totalPlays;
+        }
+      }
+
+      // Form Registration Mockup Handler
+      function handleRegistration(e) {
+        e.preventDefault();
+        const name = document.getElementById("regName").value;
+        const email = document.getElementById("regEmail").value;
+
+        if (name && email) {
+          localStorage.setItem(
+            `form_submitted_song_${currentActiveSongId}`,
+            "true",
+          );
+          registerBox.classList.remove("active");
+          checkPlayLimitAndPlay();
+        }
+      }
+
+      function toggleLike(event, songId) {
+        event.stopPropagation();
+        const song = songsData.find((s) => s.id === songId);
+        if (!song) return;
+
+        const isLiked = localStorage.getItem(`song_liked_${songId}`) === "true";
+        localStorage.setItem(`song_liked_${songId}`, (!isLiked).toString());
+
+        const updatedLikes = getLikesCount(song);
+        const row = document.querySelector(`.track-row[data-id="${songId}"]`);
+
+        if (row) {
+          const btn = row.querySelector(".btn-like");
+          btn.classList.toggle("liked", !isLiked);
+          row.querySelector(".like-count").textContent = updatedLikes;
+        }
+
+        if (currentActiveSongId === songId) {
+          modalLikeBtn.classList.toggle("liked", !isLiked);
+          modalLikeCount.textContent = updatedLikes;
+        }
+      }
+
+      /* ==========================================================================
+           4. MODAL & PLAYER CONTROLS
+           ========================================================================== */
+      function openModal(songId) {
+        const song = songsData.find((s) => s.id === songId);
+        if (!song) return;
+
+        document
+          .querySelectorAll(".track-row")
+          .forEach((r) => r.classList.remove("active-track"));
+        const activeRow = document.querySelector(
+          `.track-row[data-id="${songId}"]`,
+        );
+        if (activeRow) activeRow.classList.add("active-track");
+
+        currentActiveSongId = song.id;
+        modalCover.src = song.cover;
+        modalTitle.textContent = song.title;
+        modalArtist.textContent = "by " + song.artist;
+
+        modalPlaysCount.textContent = getPlaysCountFromStorage(song);
+        modalReleaseDate.textContent = song.releaseDate;
+        modalDemoStatus.textContent = song.isDemo
+          ? "Versi Demo"
+          : "Versi Rilis / Official";
+        modalDescription.textContent =
+          song.description || "Tidak ada keterangan.";
+
+        const isLiked =
+          localStorage.getItem(`song_liked_${song.id}`) === "true";
+        modalLikeCount.textContent = getLikesCount(song);
+        modalLikeBtn.classList.toggle("liked", isLiked);
+        modalLikeBtn.onclick = (e) => toggleLike(e, currentActiveSongId);
+
+        player.src = song.audio;
+        overlay.classList.add("active");
+
+        checkPlayLimitAndPlay();
+      }
+
+      function closeModal() {
+        overlay.classList.remove("active");
+        player.pause();
+        player.currentTime = 0;
+        document
+          .querySelectorAll(".track-row")
+          .forEach((r) => r.classList.remove("active-track"));
+      }
+
+      modalPlayBtn.addEventListener("click", () => {
+        if (modalPlayBtn.classList.contains("disabled")) return;
+        if (player.paused) {
+          checkPlayLimitAndPlay();
+        } else {
+          player.pause();
+        }
+      });
+
+      document
+        .getElementById("modalClose")
+        .addEventListener("click", closeModal);
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+
+      player.addEventListener("play", () => {
+        modalPlayIcon.innerHTML = pauseIconPath;
+      });
+      player.addEventListener("pause", () => {
+        modalPlayIcon.innerHTML = playIconPath;
+      });
+      player.addEventListener("timeupdate", () => {
+        if (!player.duration) return;
+        modalProgressFill.style.width =
+          (player.currentTime / player.duration) * 100 + "%";
+        modalCurTime.textContent = formatTime(player.currentTime);
+        modalDurTime.textContent = formatTime(player.duration);
+      });
+
+      modalProgress.addEventListener("click", (e) => {
+        const rect = modalProgress.getBoundingClientRect();
+        const ratio = (e.clientX - rect.left) / rect.width;
+        player.currentTime = ratio * player.duration;
+      });
+
+      function formatTime(sec) {
+        if (!isFinite(sec)) return "--:--";
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60)
+          .toString()
+          .padStart(2, "0");
+        return `${m}:${s}`;
+      }
+
+      // Init App On Load
+      document.addEventListener("DOMContentLoaded", renderTracklist);
+    </script>
+  </body>
+</html>
