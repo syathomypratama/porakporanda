@@ -667,17 +667,17 @@
           <!-- DETAIL LAGU -->
           <div class="modal-details">
             <div class="modal-detail-item">
-              <strong>Total Didengar:</strong>
+              <strong>Played:</strong>
               <span id="modalPlaysCount">0</span> kali
             </div>
             <div class="modal-detail-item">
-              <strong>Rilis:</strong> <span id="modalReleaseDate">-</span>
+              <span id="modalReleaseDate">-</span>
             </div>
             <div class="modal-detail-item">
-              <strong>Status:</strong> <span id="modalDemoStatus">-</span>
+              <span id="modalDemoStatus">-</span>
             </div>
             <div class="modal-detail-item">
-              <strong>Keterangan / Lirik:</strong>
+              <!-- <strong>Keterangan / Lirik:</strong> -->
               <div class="modal-desc-box" id="modalDescription"></div>
             </div>
           </div>
@@ -981,7 +981,7 @@
         modalReleaseDate.textContent = song.releaseDate;
         modalDemoStatus.textContent = song.isDemo
           ? "Versi Demo"
-          : "Versi Rilis / Official";
+          : "Mixed and Mastered by : Heri Tinggo";
         modalDescription.textContent =
           song.description || "Tidak ada keterangan.";
 
